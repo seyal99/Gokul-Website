@@ -282,7 +282,7 @@ watch(
               <img :src="aboutMePhoto" alt="About me photo" class="about-photo" />
             </div>
             <div class="about-copy">
-              <h2>About Me</h2>
+              <h2>Hello!</h2>
               <p>
                 My name is Gokul Raju and I recently graduated with a Master's degree in Robotics, Systems & Control from ETH Zurich. My research interests focus on Machine Learning, Computer Vision, Reinforcement Learning, Embodied AI and LLMs.
                 <br>
