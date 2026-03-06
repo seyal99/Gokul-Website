@@ -34,7 +34,7 @@ const miniProjects = [
     title: "GPT-2",
     description: "Implementing and training GPT-2 124M from scratch",
     buttonText: "Code",
-    href: "https://github.com/BjfpgZOC/GPT-2",
+    href: "https://github.com/seyal99/GPT-2",
     image: miniGpt2Image,
     featured: true
   },
@@ -43,7 +43,7 @@ const miniProjects = [
     title: "RAG Chat",
     description: "Chunking, vector retrieval, and answer synthesis experiments for document-grounded QA.",
     buttonText: "Code",
-    href: "https://github.com/BjfpgZOC/RAG-Playground",
+    href: "https://github.com/seyal99/RAG-Playground",
     image: miniRagImage,
     featured: true
   },
@@ -52,7 +52,7 @@ const miniProjects = [
     title: "TensorRT Playground",
     description: "Inference optimization and benchmarking across model variants.",
     buttonText: "Code",
-    href: "https://github.com/BjfpgZOC/TensorRT-Playground",
+    href: "https://github.com/seyal99/TensorRT-Playground",
     image: miniTrtImage,
     featured: false
   },
@@ -61,7 +61,7 @@ const miniProjects = [
     title: "PEFT Workflow",
     description: "LoRA/QLoRA fine-tuning workflows for lightweight adaptation and evaluation.",
     buttonText: "Code",
-    href: "https://github.com/BjfpgZOC/PEFT-Playground",
+    href: "https://github.com/seyal99/PEFT-Playground",
     image: miniPeftImage,
     featured: false
   },
@@ -329,7 +329,7 @@ watch(
                     lap times and 50% faster inference times compared to existing policies
                   </p>
                   <div class="project-actions">
-                    <InteractiveHoverButton text="Report" href="https://github.com/BjfpgZOC/ETH-Master-Thesis" />
+                    <InteractiveHoverButton text="Report" href="https://github.com/seyal99/ETH-Master-Thesis" />
                   </div>
                 </div>
               </article>
@@ -355,7 +355,7 @@ watch(
                     IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), Nashville, 2025</i>
                   </p>
                   <div class="project-actions">
-                    <InteractiveHoverButton text="Report" href="https://github.com/BjfpgZOC/ETH-Semester-Thesis" />
+                    <InteractiveHoverButton text="Report" href="https://github.com/seyal99/ETH-Semester-Thesis" />
                     <InteractiveHoverButton text="arXiv" href="https://arxiv.org/abs/2504.10669" />
                     <InteractiveHoverButton text="Benchmark" href="https://dsec.ifi.uzh.ch/uzh/dsec-flow-optical-flow-benchmark/" />
                   </div>
@@ -373,7 +373,7 @@ watch(
                     obstacles (planets) & dynamic obstacles (satellites) and to dock with the docking station
                   </p>
                   <div class="project-actions">
-                    <InteractiveHoverButton text="Code" href="https://github.com/BjfpgZOC/ETH-PDM4AR-Spaceship-Project" />
+                    <InteractiveHoverButton text="Code" href="https://github.com/seyal99/ETH-PDM4AR-Spaceship-Project" />
                   </div>
                 </div>
               </article>
@@ -392,7 +392,7 @@ watch(
                     tracking accuracy at 0.75 IoU) and visualized the tracking results by generating 3D trajectories for coaching analytics.
                   </p>
                   <div class="project-actions">
-                    <InteractiveHoverButton text="Report" href="https://github.com/BjfpgZOC/ETH-3DVision-Project" />
+                    <InteractiveHoverButton text="Report" href="https://github.com/seyal99/ETH-3DVision-Project" />
                   </div>
                 </div>
               </article>
@@ -435,7 +435,7 @@ watch(
               <DockIcon>
                 <a
                   class="dock-link dock-github"
-                  href="https://github.com/BjfpgZOC"
+                  href="https://github.com/seyal99"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="GitHub"
