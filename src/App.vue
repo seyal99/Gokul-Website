@@ -17,6 +17,7 @@ import project4Gif from "./assets/images/soccer3d.gif";
 import miniRagImage from "./assets/images/rag.png";
 import miniTrtImage from "./assets/images/trt.png";
 import miniPeftImage from "./assets/images/peft.png";
+import miniGpt2Image from "./assets/images/gpt2.png";
 import miniComingSoonImage from "./assets/images/comingsoon.png";
 import cvPdf from "./assets/docs/CV.pdf";
 
@@ -28,6 +29,15 @@ const projectTimelineItems = [
 ];
 
 const miniProjects = [
+  {
+    id: "gpt2",
+    title: "GPT-2",
+    description: "Implementing and training GPT-2 124M from scratch",
+    buttonText: "Code",
+    href: "https://github.com/BjfpgZOC/GPT-2",
+    image: miniGpt2Image,
+    featured: true
+  },
   {
     id: "rag",
     title: "RAG Chat",
@@ -56,7 +66,16 @@ const miniProjects = [
     featured: false
   },
   {
-    id: "none",
+    id: "coming-soon-1",
+    title: "Coming Soon",
+    description: "",
+    buttonText: "",
+    href: "",
+    image: miniComingSoonImage,
+    featured: true
+  },
+  {
+    id: "coming-soon-2",
     title: "Coming Soon",
     description: "",
     buttonText: "",
@@ -468,61 +487,64 @@ watch(
     </section>
 
     <div class="chatbot-wrap" :class="{ 'chatbot-wrap--in': chatIconVisible }" @pointermove.stop @pointerleave.stop>
-      <LiquidGlass
-        v-if="!chatOpen"
-        container-class="chatbot-fab-glass"
-        class="chatbot-fab-shell"
-        :radius="999"
-        :frost="0.05"
-        :alpha="0.18"
-        :lightness="18"
-        :blur="0"
-        :displace="30"
-      >
-        <button class="chatbot-fab" type="button" @click="toggleChat" aria-label="Open chatbot">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 5.5h16v10H8l-4 3v-13Z" stroke="currentColor" stroke-width="1.6" />
-            <path d="M8 9h8M8 12h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-          </svg>
-        </button>
-      </LiquidGlass>
+      <Transition name="chat-swap" mode="out-in">
+        <LiquidGlass
+          v-if="!chatOpen"
+          key="fab"
+          container-class="chatbot-fab-glass"
+          class="chatbot-fab-shell"
+          :radius="999"
+          :frost="0.05"
+          :alpha="0.18"
+          :lightness="18"
+          :blur="0"
+          :displace="30"
+        >
+          <button class="chatbot-fab" type="button" @click="toggleChat" aria-label="Open chatbot">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 5.5h16v10H8l-4 3v-13Z" stroke="currentColor" stroke-width="1.6" />
+              <path d="M8 9h8M8 12h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+          </button>
+        </LiquidGlass>
 
-      <section v-if="chatOpen" class="chatbot-panel">
-        <div class="chatbot-top">
-          <button class="chatbot-clear" type="button" @click="clearChat" aria-label="Clear conversation">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M8.5 5h7M5 7h14" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
-              <rect x="7.2" y="7" width="9.6" height="12" rx="1.6" stroke="currentColor" stroke-width="1.9" />
-              <path d="M10.1 10.2v5.8M13.9 10.2v5.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
-            </svg>
-          </button>
-          <button class="chatbot-close" type="button" @click="toggleChat" aria-label="Close chat">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
-            </svg>
-          </button>
-        </div>
-        <div ref="chatBodyRef" class="chatbot-body">
-          <div v-if="chatMessages.length === 0" class="chatbot-empty">
-            <p>Work in Progress</p>
+        <section v-else key="panel" class="chatbot-panel">
+          <div class="chatbot-top">
+            <button class="chatbot-clear" type="button" @click="clearChat" aria-label="Clear conversation">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8.5 5h7M5 7h14" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+                <rect x="7.2" y="7" width="9.6" height="12" rx="1.6" stroke="currentColor" stroke-width="1.9" />
+                <path d="M10.1 10.2v5.8M13.9 10.2v5.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+              </svg>
+            </button>
+            <button class="chatbot-close" type="button" @click="toggleChat" aria-label="Close chat">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+              </svg>
+            </button>
           </div>
-          <div
-            v-for="(message, index) in chatMessages"
-            :key="`${message.role}-${index}`"
-            class="chat-row"
-            :class="message.role === 'user' ? 'chat-row-user' : 'chat-row-bot'"
-          >
-            <p>{{ message.text }}</p>
+          <div ref="chatBodyRef" class="chatbot-body">
+            <div v-if="chatMessages.length === 0" class="chatbot-empty">
+              <p>Work in Progress</p>
+            </div>
+            <div
+              v-for="(message, index) in chatMessages"
+              :key="`${message.role}-${index}`"
+              class="chat-row"
+              :class="message.role === 'user' ? 'chat-row-user' : 'chat-row-bot'"
+            >
+              <p>{{ message.text }}</p>
+            </div>
           </div>
-        </div>
-        <div class="chatbot-input">
-          <VanishInput
-            v-model="chatInput"
-            :placeholders="['Ask anything...']"
-            @submit="sendChatMessage"
-          />
-        </div>
-      </section>
+          <div class="chatbot-input">
+            <VanishInput
+              v-model="chatInput"
+              :placeholders="['Ask anything...']"
+              @submit="sendChatMessage"
+            />
+          </div>
+        </section>
+      </Transition>
     </div>
     </div>
   </div>
@@ -618,6 +640,26 @@ watch(
 .chatbot-fab svg {
   width: 1.45rem;
   height: 1.45rem;
+}
+
+.chat-swap-enter-active,
+.chat-swap-leave-active {
+  transition: opacity 220ms ease, transform 280ms cubic-bezier(0.22, 1, 0.36, 1), filter 220ms ease;
+  transform-origin: right bottom;
+}
+
+.chat-swap-enter-from,
+.chat-swap-leave-to {
+  opacity: 0;
+  transform: translateY(10px) scale(0.96);
+  filter: blur(1px);
+}
+
+.chat-swap-enter-to,
+.chat-swap-leave-from {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 
 .chatbot-panel {
@@ -1094,7 +1136,7 @@ watch(
 
 .mini-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.85rem;
   margin-top: var(--mini-title-grid-gap);
 }
