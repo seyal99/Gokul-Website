@@ -1,13 +1,44 @@
+# Dependencies, builds, and caches
 node_modules/
-dist/
+/dist/
 .vite/
-.DS_Store
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+.cache/
+coverage/
+*.tsbuildinfo
+
+# Local configuration and credentials
 .env
 .env.*
-!.env.example
-AGENTS.md
+/.aws/
+/.codex/
+/.agents/
+/AGENTS.md
+/.vscode/
+/.idea/
+*.local
+
+# Local documentation; not required to build or deploy the site
+/README.md
+/BLOGS.md
+/docs/
+
+# Local design history, scratch work, and browser/test artifacts
+/.local-archive/
+/tmp/
+/temp/
+/.playwright-mcp/
+/playwright-report/
+/test-results/
+/blob-report/
+# Blog helpers are ignored by the renderer; real articles remain eligible.
+/src/content/blogs/_*.md
+
+# Logs, editor backups, and OS metadata
+*.log
+*.swp
+*.swo
+*~
+*.bak
+.DS_Store
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,96 @@
+{
+  "paperDescription": "SSM-based multi-event framework leveraging the rich spatiotemporal cues for optical flow estimation in neuromorphic vision.",
+  "projects": [
+    {
+      "id": "quadrotors",
+      "title": "Efficient Reinforcement Learning in Quadrotors",
+      "description": "JAX-based reinforcement learning framework using PPO and state space models for autonomous drone racing.",
+      "image": "ssmdrone.gif",
+      "links": [
+        {
+          "label": "report",
+          "href": "https://github.com/seyal99/ETH-Master-Thesis"
+        }
+      ]
+    },
+    {
+      "id": "event-cameras",
+      "title": "Optical Flow Estimation in Event Cameras",
+      "description": "SSM-based multi-event framework combining spatiotemporal cues for optical flow estimation in event-based vision.",
+      "image": "eventflow.gif",
+      "links": [
+        {
+          "label": "report",
+          "href": "https://github.com/seyal99/ETH-Semester-Thesis"
+        },
+        {
+          "label": "paper",
+          "href": "https://arxiv.org/abs/2504.10669"
+        },
+        {
+          "label": "benchmark",
+          "href": "https://dsec.ifi.uzh.ch/uzh/dsec-flow-optical-flow-benchmark/"
+        }
+      ]
+    },
+    {
+      "id": "spaceship",
+      "title": "Spaceship Path Planning",
+      "description": "Trajectory planning and control using successive convexification for obstacle avoidance and spaceship docking.",
+      "image": "spaceship.gif",
+      "links": [
+        {
+          "label": "code",
+          "href": "https://github.com/seyal99/ETH-PDM4AR-Spaceship-Project"
+        }
+      ]
+    },
+    {
+      "id": "soccer",
+      "title": "Robust Soccer Ball Detection and Tracking",
+      "description": "Multi-camera pipeline combining YOLOv8 and motion-from-blur estimation for 3D tracking of fast-moving soccer balls.",
+      "image": "soccer3d.gif",
+      "links": [
+        {
+          "label": "report",
+          "href": "https://github.com/seyal99/ETH-3DVision-Project"
+        }
+      ]
+    }
+  ],
+  "minis": [
+    {
+      "id": "gpt2",
+      "title": "GPT-2",
+      "description": "Implementation and training of GPT-2 (124M parameters) from scratch.",
+      "href": "https://github.com/seyal99/GPT-2"
+    },
+    {
+      "id": "rag",
+      "title": "RAG chat",
+      "description": "Document question-answering pipeline combining text chunking, retrieval, and LLM responses.",
+      "href": "https://github.com/seyal99/RAG-Playground"
+    },
+    {
+      "id": "trt",
+      "title": "TensorRT playground",
+      "description": "TensorRT workflow for model optimization, inference acceleration, and performance benchmarking.",
+      "href": "https://github.com/seyal99/TensorRT-Playground"
+    },
+    {
+      "id": "peft",
+      "title": "PEFT workflow",
+      "description": "Parameter-efficient fine-tuning workflow using LoRA and QLoRA for LLMs.",
+      "href": "https://github.com/seyal99/PEFT-Playground"
+    }
+  ],
+  "aboutQuote": {
+    "text": "What I cannot create, I do not understand.",
+    "source": "https://feynman.com/fun/quotes/"
+  },
+  "about": [
+    "I'm Gokul. I'm a robotics engineer and the founder of MEI, where I'm building expressive robots. Ever since I was a kid, I've always been intrigued by how robots see, learn, and figure out what to do.",
+    "I've worked on computer vision (neuromorphic vision), reinforcement learning (autonomous drone racing), and generative AI. I have also tinkered with LLMs and fine-tuning. Lately, I've gotten my hands on an SO-101 robot arm setup and I've been experimenting with VLAs, WAMs and LLMs for manipulation tasks.",
+    "Before starting MEI, I completed my master's in Robotics, Systems and Control from ETH Zurich, where I had the opportunity to work with Prof. Davide Scaramuzza at the Robotics and Perception Group, UZH. Before that, I did my bachelor's in Mechanical Engineering at Heriot-Watt University, where I was awarded the Watt Club Medal and the James Anderson Memorial Prize."
+  ]
+}

@@ -9,5 +9,6 @@ export const MAGNIFICATION_INJECTION_KEY = Symbol("magnification") as InjectionK
 >;
 
 export const DISTANCE_INJECTION_KEY = Symbol("distance") as InjectionKey<ComputedRef<number>>;
+export const ICON_SIZE_INJECTION_KEY = Symbol("icon-size") as InjectionKey<ComputedRef<number>>;
 
 export const ORIENTATION_INJECTION_KEY = Symbol("orientation") as InjectionKey<DataOrientation>;

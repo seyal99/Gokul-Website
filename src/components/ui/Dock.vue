@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from "vue";
 import type { DataOrientation, Direction } from "./dock-types";
-import { computed, provide, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, provide, ref } from "vue";
 import {
   DISTANCE_INJECTION_KEY,
+  ICON_SIZE_INJECTION_KEY,
   MAGNIFICATION_INJECTION_KEY,
   MOUSE_X_INJECTION_KEY,
   MOUSE_Y_INJECTION_KEY,
@@ -13,6 +14,7 @@ import {
 interface DockProps {
   class?: HTMLAttributes["class"];
   magnification?: number;
+  iconSize?: number;
   distance?: number;
   direction?: Direction;
   orientation?: DataOrientation;
@@ -20,6 +22,7 @@ interface DockProps {
 
 const props = withDefaults(defineProps<DockProps>(), {
   magnification: 60,
+  iconSize: 40,
   distance: 140,
   direction: "middle",
   orientation: "horizontal"
@@ -30,41 +33,55 @@ const mouseX = ref(Infinity);
 const mouseY = ref(Infinity);
 const magnification = computed(() => props.magnification);
 const distance = computed(() => props.distance);
+const iconSize = computed(() => props.iconSize);
 
 const dockClass = computed(() => ({
-  "items-start": props.direction === "top",
-  "items-center": props.direction === "middle",
-  "items-end": props.direction === "bottom"
+  "dock--top": props.direction === "top",
+  "dock--middle": props.direction === "middle",
+  "dock--bottom": props.direction === "bottom"
 }));
 
-function onMouseMove(e: MouseEvent) {
-  requestAnimationFrame(() => {
-    mouseX.value = e.pageX;
-    mouseY.value = e.pageY;
-  });
+function onMouseMove(e: PointerEvent) {
+  if (e.pointerType !== 'mouse') return;
+  mouseX.value = e.clientX;
+  mouseY.value = e.clientY;
 }
 
 function onMouseLeave() {
-  requestAnimationFrame(() => {
-    mouseX.value = Infinity;
-    mouseY.value = Infinity;
-  });
+  mouseX.value = Infinity;
+  mouseY.value = Infinity;
 }
+
+function onVisibilityChange() {
+  if (document.hidden) onMouseLeave();
+}
+
+onMounted(() => {
+  window.addEventListener('blur', onMouseLeave);
+  document.addEventListener('visibilitychange', onVisibilityChange);
+});
+onBeforeUnmount(() => {
+  window.removeEventListener('blur', onMouseLeave);
+  document.removeEventListener('visibilitychange', onVisibilityChange);
+});
 
 provide(MOUSE_X_INJECTION_KEY, mouseX);
 provide(MOUSE_Y_INJECTION_KEY, mouseY);
 provide(ORIENTATION_INJECTION_KEY, props.orientation);
 provide(MAGNIFICATION_INJECTION_KEY, magnification);
 provide(DISTANCE_INJECTION_KEY, distance);
+provide(ICON_SIZE_INJECTION_KEY, iconSize);
 </script>
 
 <template>
   <div
     ref="dockRef"
-    class="mx-auto mt-8 flex h-[58px] w-max gap-4 rounded-2xl border border-slate-500/40 p-2 backdrop-blur-md transition-all supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10"
-    :class="[props.orientation === 'vertical' && 'h-max w-[58px] flex-col', props.class, dockClass]"
-    @mousemove="onMouseMove"
-    @mouseleave="onMouseLeave"
+    class="dock"
+    :class="[props.orientation === 'vertical' && 'dock--vertical', props.class, dockClass]"
+    @pointermove="onMouseMove"
+    @pointerleave="onMouseLeave"
+    @pointercancel="onMouseLeave"
+    @click="onMouseLeave"
   >
     <slot />
   </div>
